@@ -2,7 +2,7 @@
 
 ## Our pledge
 
-We pledge to make participation in AgentOS a harassment-free experience for everyone,
+We pledge to make participation in Oasis a harassment-free experience for everyone,
 regardless of age, body size, visible or invisible disability, ethnicity, sex
 characteristics, gender identity and expression, experience level, education,
 socio-economic status, nationality, personal appearance, race, caste, color, religion,

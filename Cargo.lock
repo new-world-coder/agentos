@@ -3,127 +3,6 @@
 version = 4
 
 [[package]]
-name = "agentos-api"
-version = "0.2.0"
-dependencies = [
- "agentos-core",
- "agentos-policy",
- "agentos-provider",
- "agentos-runtime",
- "agentos-store",
- "agentos-tools",
- "anyhow",
- "axum",
- "clap",
- "serde",
- "serde_json",
- "tokio",
- "tower-http",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "agentos-cli"
-version = "0.2.0"
-dependencies = [
- "agentos-core",
- "agentos-policy",
- "agentos-provider",
- "agentos-runtime",
- "agentos-store",
- "agentos-tools",
- "anyhow",
- "clap",
- "serde_json",
- "tokio",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "agentos-core"
-version = "0.2.0"
-dependencies = [
- "chrono",
- "hex",
- "serde",
- "serde_json",
- "sha2",
- "thiserror",
- "uuid",
-]
-
-[[package]]
-name = "agentos-policy"
-version = "0.2.0"
-dependencies = [
- "agentos-core",
- "serde",
- "serde_json",
- "tracing",
-]
-
-[[package]]
-name = "agentos-provider"
-version = "0.2.0"
-dependencies = [
- "agentos-core",
- "async-trait",
- "serde",
- "serde_json",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "agentos-runtime"
-version = "0.2.0"
-dependencies = [
- "agentos-core",
- "agentos-policy",
- "agentos-provider",
- "agentos-store",
- "agentos-tools",
- "async-trait",
- "chrono",
- "serde",
- "serde_json",
- "tempfile",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "agentos-store"
-version = "0.2.0"
-dependencies = [
- "agentos-core",
- "anyhow",
- "async-trait",
- "chrono",
- "rusqlite",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "agentos-tools"
-version = "0.2.0"
-dependencies = [
- "agentos-core",
- "async-trait",
- "serde",
- "serde_json",
- "tokio",
- "tracing",
-]
-
-[[package]]
 name = "ahash"
 version = "0.8.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -777,6 +656,127 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "071dfc062690e90b734c0b2273ce72ad0ffa95f0c74596bc250dcfd960262841"
 dependencies = [
  "autocfg",
+]
+
+[[package]]
+name = "oasis-api"
+version = "0.2.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "clap",
+ "oasis-core",
+ "oasis-policy",
+ "oasis-provider",
+ "oasis-runtime",
+ "oasis-store",
+ "oasis-tools",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tower-http",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "oasis-cli"
+version = "0.2.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "oasis-core",
+ "oasis-policy",
+ "oasis-provider",
+ "oasis-runtime",
+ "oasis-store",
+ "oasis-tools",
+ "serde_json",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "oasis-core"
+version = "0.2.0"
+dependencies = [
+ "chrono",
+ "hex",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror",
+ "uuid",
+]
+
+[[package]]
+name = "oasis-policy"
+version = "0.2.0"
+dependencies = [
+ "oasis-core",
+ "serde",
+ "serde_json",
+ "tracing",
+]
+
+[[package]]
+name = "oasis-provider"
+version = "0.2.0"
+dependencies = [
+ "async-trait",
+ "oasis-core",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "oasis-runtime"
+version = "0.2.0"
+dependencies = [
+ "async-trait",
+ "chrono",
+ "oasis-core",
+ "oasis-policy",
+ "oasis-provider",
+ "oasis-store",
+ "oasis-tools",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "oasis-store"
+version = "0.2.0"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "chrono",
+ "oasis-core",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "oasis-tools"
+version = "0.2.0"
+dependencies = [
+ "async-trait",
+ "oasis-core",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]

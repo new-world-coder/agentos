@@ -1,5 +1,10 @@
 # Release notes
 
+## Unreleased — rename to Oasis
+
+- Product and crate rename: **AgentOS → Oasis** (`oasis-core`, `oasis-cli`, binary `oasis`, …)
+- GitHub repository should be renamed `agentos` → `oasis` (maintainer UI; see `.github/repository-meta.md`)
+
 ## v0.2.0 — Phase 1 (SQLite + crash-resume)
 
 - `SqliteStore` with WAL, runs / effects / journal tables

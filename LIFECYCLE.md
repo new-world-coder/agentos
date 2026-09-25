@@ -1,4 +1,4 @@
-# AgentOS Lifecycle
+# Oasis Lifecycle
 
 Phased delivery plan for the durable agent runtime. Do not mark a later phase complete
 until its exit criteria pass.

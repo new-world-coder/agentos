@@ -12,14 +12,14 @@ labels: bug
 ## Repro
 
 ```bash
-cargo run -p agentos-cli -- ...
+cargo run -p oasis-cli -- ...
 ```
 
 ## Environment
 
 - OS:
 - `rustc --version`:
-- AgentOS commit / tag:
+- Oasis commit / tag:
 
 ## Journal / logs
 

@@ -1,6 +1,6 @@
 # Architecture
 
-AgentOS separates **proposal**, **authorization**, **application**, and **durability**.
+Oasis separates **proposal**, **authorization**, **application**, and **durability**.
 
 ## Control flow
 

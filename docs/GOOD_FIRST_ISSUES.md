@@ -25,7 +25,7 @@ Welcome. These are sized for a first PR while teaching the real invariants.
 ### Policy & tools
 
 7. **JSON Schema for tools** — describe `echo` / `add` inputs; validate before invoke.
-8. **Policy fixture table** — data-driven allow/deny/approval cases in `agentos-policy`.
+8. **Policy fixture table** — data-driven allow/deny/approval cases in `oasis-policy`.
 
 ### Phase 2 (slightly larger)
 

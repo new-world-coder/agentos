@@ -6,20 +6,20 @@ Accepted (Phase 0)
 
 ## Context
 
-AgentOS needs clear crate boundaries so policy, storage, providers, and the HTTP/CLI
+Oasis needs clear crate boundaries so policy, storage, providers, and the HTTP/CLI
 surfaces can evolve independently without a monolith.
 
 ## Decision
 
 Use a Cargo workspace with:
 
-- `agentos-core` — types only
-- `agentos-store` — persistence
-- `agentos-provider` — model backends
-- `agentos-tools` — tool implementations
-- `agentos-policy` — authorization of effects
-- `agentos-runtime` — orchestration loop
-- `agentos-api` / `agentos-cli` — edges
+- `oasis-core` — types only
+- `oasis-store` — persistence
+- `oasis-provider` — model backends
+- `oasis-tools` — tool implementations
+- `oasis-policy` — authorization of effects
+- `oasis-runtime` — orchestration loop
+- `oasis-api` / `oasis-cli` — edges
 
 ## Consequences
 

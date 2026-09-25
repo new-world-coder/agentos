@@ -5,5 +5,5 @@
 *.db
 *.db-*
 .DS_Store
-agentos.db
+oasis.db
 /tmp/

@@ -1,0 +1,27 @@
+[package]
+name = "oasis-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Command-line interface for Oasis"
+authors.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "oasis"
+path = "src/main.rs"
+
+[dependencies]
+oasis-core = { workspace = true }
+oasis-policy = { workspace = true }
+oasis-provider = { workspace = true }
+oasis-runtime = { workspace = true }
+oasis-store = { workspace = true }
+oasis-tools = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }

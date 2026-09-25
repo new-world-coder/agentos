@@ -1,21 +1,21 @@
-# AgentOS
+# Oasis
 
 **A durable agent runtime for people who refuse to ship flaky loops.**
 
-AgentOS is an Apache-2.0 **Rust** workspace where every side effect is proposed, policy-checked, optionally human-approved, applied, and recorded on a **hash-chained journal**—so a killed process can **resume** instead of gaslighting you.
+Oasis is an Apache-2.0 **Rust** workspace where every side effect is proposed, policy-checked, optionally human-approved, applied, and recorded on a **hash-chained journal**—so a killed process can **resume** instead of gaslighting you.
 
-[![CI](https://github.com/new-world-coder/agentos/actions/workflows/ci.yml/badge.svg)](https://github.com/new-world-coder/agentos/actions/workflows/ci.yml)
+[![CI](https://github.com/new-world-coder/oasis/actions/workflows/ci.yml/badge.svg)](https://github.com/new-world-coder/oasis/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](rust-toolchain.toml)
-[![Release](https://img.shields.io/github/v/release/new-world-coder/agentos?include_prereleases)](https://github.com/new-world-coder/agentos/releases)
+[![Release](https://img.shields.io/github/v/release/new-world-coder/oasis?include_prereleases)](https://github.com/new-world-coder/oasis/releases)
 
-> **The oasis idea:** the agent ecosystem is a desert of prompt spaghetti, silent tool calls, and “it worked on my laptop” demos. AgentOS is building an **oasis**—durable execution, auditable journals, and policy that actually runs *before* the effect. Join the movement: [VISION.md](VISION.md) · [good first issues](docs/GOOD_FIRST_ISSUES.md) · [Contributing](CONTRIBUTING.md)
+> **The oasis idea:** the agent ecosystem is a desert of prompt spaghetti, silent tool calls, and “it worked on my laptop” demos. We are building the watering hole—durable execution, auditable journals, and policy that runs *before* the effect. Join the movement: [VISION.md](VISION.md) · [good first issues](docs/GOOD_FIRST_ISSUES.md) · [Contributing](CONTRIBUTING.md)
 
 ---
 
 ## Why engineers care
 
-| Usual agent loop | AgentOS |
+| Usual agent loop | Oasis |
 |------------------|---------|
 | State dies with the process | SQLite-backed runs + crash-resume |
 | “Please don’t do bad things” in the system prompt | **Policy-before-effect** in-process |
@@ -30,16 +30,16 @@ Honest scope: **Phase 0 + Phase 1 are done** (`v0.1.0` / Phase 1 complete). Real
 ## 60-second start
 
 ```bash
-git clone https://github.com/new-world-coder/agentos.git
-cd agentos
-cargo run -p agentos-cli -- doctor
+git clone https://github.com/new-world-coder/oasis.git
+cd oasis
+cargo run -p oasis-cli -- doctor
 
 # Durable run (survives process death)
-cargo run -p agentos-cli -- --db ./agentos.db run "say hello"
-cargo run -p agentos-cli -- --db ./agentos.db resume <run_id>
+cargo run -p oasis-cli -- --db ./oasis.db run "say hello"
+cargo run -p oasis-cli -- --db ./oasis.db resume <run_id>
 
 # HTTP API
-cargo run -p agentos-api -- --db ./agentos.db --bind 127.0.0.1:8080
+cargo run -p oasis-api -- --db ./oasis.db --bind 127.0.0.1:8080
 curl -s localhost:8080/health
 ```
 
@@ -74,14 +74,14 @@ Deeper dive: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · ADRs in [docs/adr/]
 
 | Crate | Role |
 |-------|------|
-| `agentos-core` | Runs, effects, journal, hash chain |
-| `agentos-store` | `Store` trait · memory + **SQLite** |
-| `agentos-provider` | Provider trait · **mock** LLM |
-| `agentos-tools` | Tool registry (`echo`, `add`, …) |
-| `agentos-policy` | Allow / deny / require-approval |
-| `agentos-runtime` | Propose → policy → HITL → apply |
-| `agentos-api` | Axum HTTP (`/v1/runs`, drive, resume, approve) |
-| `agentos-cli` | `doctor`, `run`, `resume`, `approve`, … |
+| `oasis-core` | Runs, effects, journal, hash chain |
+| `oasis-store` | `Store` trait · memory + **SQLite** |
+| `oasis-provider` | Provider trait · **mock** LLM |
+| `oasis-tools` | Tool registry (`echo`, `add`, …) |
+| `oasis-policy` | Allow / deny / require-approval |
+| `oasis-runtime` | Propose → policy → HITL → apply |
+| `oasis-api` | Axum HTTP (`/v1/runs`, drive, resume, approve) |
+| `oasis-cli` | `doctor`, `run`, `resume`, `approve`, … |
 
 ---
 

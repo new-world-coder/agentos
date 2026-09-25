@@ -1,34 +1,25 @@
-# Repository About + rename checklist
+# Repository About checklist
 
-GitHub Apps used by cloud agents often **cannot** rename the repository or PATCH
-description/topics (403). A maintainer should apply these in the GitHub UI once.
+GitHub repo is already renamed: **`new-world-coder/oasis`**.
 
-## 1) Rename the GitHub repository
+Agents often cannot PATCH description/topics (403). If About looks wrong, fix in
+**Settings → General → About** (or the gear on the repo home).
 
-**Settings → General → Repository name**
+## About (canonical)
 
-```text
-agentos  →  oasis
-```
-
-Until that lands, clone URLs still work as `new-world-coder/agentos` (GitHub redirects
-after rename). Docs/badges already point at `new-world-coder/oasis`.
-
-## 2) About
-
-**Description** (short):
+**Description:**
 
 ```text
 Oasis — durable Rust agent runtime: hash-chained effect journal, policy-before-effect, HITL, crash-resume.
 ```
 
-**Website** (optional):
+**Website:**
 
 ```text
 https://github.com/new-world-coder/oasis
 ```
 
-**Topics** (add as tags):
+**Topics** (fix typos if present — use these exact strings):
 
 ```text
 rust
@@ -47,7 +38,9 @@ apache-2
 open-source
 ```
 
-## 3) Releases
+> Watch for accidental typos like `duurable-execution` or `sqllite`.
 
-Tags `v0.1.0` / `v0.2.0` remain valid history (AgentOS era). This rename ships as
-part of the next docs/release notes entry (`docs/RELEASE_NOTES.md`).
+## Releases
+
+Tags `v0.1.0` / `v0.2.0` are AgentOS-era history; product name is now **Oasis**.
+See `docs/RELEASE_NOTES.md`.

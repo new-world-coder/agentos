@@ -3,7 +3,7 @@
 ## Unreleased — rename to Oasis
 
 - Product and crate rename: **AgentOS → Oasis** (`oasis-core`, `oasis-cli`, binary `oasis`, …)
-- GitHub repository should be renamed `agentos` → `oasis` (maintainer UI; see `.github/repository-meta.md`)
+- GitHub repository renamed: `new-world-coder/agentos` → [`new-world-coder/oasis`](https://github.com/new-world-coder/oasis)
 
 ## v0.2.0 — Phase 1 (SQLite + crash-resume)
 

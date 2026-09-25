@@ -79,7 +79,8 @@ impl Runtime {
     pub async fn create_run(&self, goal: impl Into<String>) -> Result<Run> {
         let goal = goal.into();
         let mut run = Run::new(goal.clone());
-        run.messages.push(Message::system(&self.config.system_prompt));
+        run.messages
+            .push(Message::system(&self.config.system_prompt));
         run.messages.push(Message::user(&goal));
         self.store.create_run(&run).await?;
         let entry = JournalEntry::append(
@@ -102,12 +103,11 @@ impl Runtime {
         let mut steps = 0u32;
         loop {
             if steps >= self.config.max_steps {
-                return self
-                    .fail_run(run_id, "max steps exceeded")
-                    .await
-                    .map(|_| StepOutcome::Failed {
+                return self.fail_run(run_id, "max steps exceeded").await.map(|_| {
+                    StepOutcome::Failed {
                         error: "max steps exceeded".into(),
-                    });
+                    }
+                });
             }
             steps += 1;
 
@@ -131,10 +131,9 @@ impl Runtime {
             }
 
             if run.status == RunStatus::AwaitingApproval {
-                let effect_id = run
-                    .pending_effect_id
-                    .clone()
-                    .ok_or_else(|| CoreError::InvalidState("awaiting approval without effect".into()))?;
+                let effect_id = run.pending_effect_id.clone().ok_or_else(|| {
+                    CoreError::InvalidState("awaiting approval without effect".into())
+                })?;
                 return Ok(StepOutcome::AwaitingApproval { effect_id });
             }
 
@@ -244,12 +243,8 @@ impl Runtime {
                 effect.status = EffectStatus::Approved;
                 effect.touch();
                 self.store.put_effect(&effect).await?;
-                self.journal(
-                    &run,
-                    "effect_approved",
-                    json!({ "effect_id": effect_id }),
-                )
-                .await?;
+                self.journal(&run, "effect_approved", json!({ "effect_id": effect_id }))
+                    .await?;
                 run.status = RunStatus::Running;
                 run.touch();
                 self.store.update_run(&run).await?;
@@ -486,7 +481,12 @@ impl Runtime {
         Ok(())
     }
 
-    async fn journal(&self, run: &Run, event_type: &str, payload: serde_json::Value) -> Result<JournalEntry> {
+    async fn journal(
+        &self,
+        run: &Run,
+        event_type: &str,
+        payload: serde_json::Value,
+    ) -> Result<JournalEntry> {
         // Re-read tip to stay consistent under concurrent writers (single-writer for now).
         let tip = self.store.tip_hash(&run.id).await?;
         let journal = self.store.list_journal(&run.id).await?;
@@ -623,10 +623,8 @@ mod tests {
 
         let run_id = {
             let store = Arc::new(SqliteStore::open(&path).unwrap());
-            let provider = MockProvider::new(vec![MockScript::tool(
-                "echo",
-                json!({"text": "step1"}),
-            )]);
+            let provider =
+                MockProvider::new(vec![MockScript::tool("echo", json!({"text": "step1"}))]);
             // After tool, mock defaults to complete — so we need to stop before second turn.
             // Approach: manually craft a Running run after first effect via drive with
             // a custom provider that only returns the tool once, then we kill before drive continues

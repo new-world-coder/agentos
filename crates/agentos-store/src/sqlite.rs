@@ -50,7 +50,10 @@ impl SqliteStore {
     }
 
     fn migrate(&self) -> Result<()> {
-        let conn = self.conn.lock().map_err(|e| CoreError::Store(e.to_string()))?;
+        let conn = self
+            .conn
+            .lock()
+            .map_err(|e| CoreError::Store(e.to_string()))?;
         conn.execute_batch(
             r#"
             CREATE TABLE IF NOT EXISTS runs (
@@ -209,8 +212,10 @@ impl Store for SqliteStore {
                         run.id.0,
                         run.status.as_str(),
                         run.goal,
-                        serde_json::to_string(&run.messages).map_err(|e| CoreError::Store(e.to_string()))?,
-                        serde_json::to_string(&run.steps).map_err(|e| CoreError::Store(e.to_string()))?,
+                        serde_json::to_string(&run.messages)
+                            .map_err(|e| CoreError::Store(e.to_string()))?,
+                        serde_json::to_string(&run.steps)
+                            .map_err(|e| CoreError::Store(e.to_string()))?,
                         run.tip_hash.as_str(),
                         run.updated_at.to_rfc3339(),
                         run.pending_effect_id,
@@ -382,7 +387,8 @@ impl Store for SqliteStore {
                     entry.run_id,
                     entry.seq as i64,
                     entry.event_type,
-                    serde_json::to_string(&entry.payload).map_err(|e| CoreError::Store(e.to_string()))?,
+                    serde_json::to_string(&entry.payload)
+                        .map_err(|e| CoreError::Store(e.to_string()))?,
                     entry.prev_hash.as_str(),
                     entry.hash.as_str(),
                     entry.at.to_rfc3339(),
@@ -464,7 +470,8 @@ fn row_to_run(row: &rusqlite::Row<'_>) -> Result<Run> {
         id: RunId(row.get(0).map_err(|e| CoreError::Store(e.to_string()))?),
         status: status_from_str(&status)?,
         goal: row.get(2).map_err(|e| CoreError::Store(e.to_string()))?,
-        messages: serde_json::from_str(&messages_json).map_err(|e| CoreError::Store(e.to_string()))?,
+        messages: serde_json::from_str(&messages_json)
+            .map_err(|e| CoreError::Store(e.to_string()))?,
         steps: serde_json::from_str(&steps_json).map_err(|e| CoreError::Store(e.to_string()))?,
         tip_hash: Hash(tip),
         created_at: chrono::DateTime::parse_from_rfc3339(&created)
@@ -516,7 +523,8 @@ fn row_to_journal(row: &rusqlite::Row<'_>) -> Result<JournalEntry> {
         run_id: row.get(0).map_err(|e| CoreError::Store(e.to_string()))?,
         seq: seq as u64,
         event_type: row.get(2).map_err(|e| CoreError::Store(e.to_string()))?,
-        payload: serde_json::from_str(&payload_json).map_err(|e| CoreError::Store(e.to_string()))?,
+        payload: serde_json::from_str(&payload_json)
+            .map_err(|e| CoreError::Store(e.to_string()))?,
         prev_hash: Hash(row.get(4).map_err(|e| CoreError::Store(e.to_string()))?),
         hash: Hash(row.get(5).map_err(|e| CoreError::Store(e.to_string()))?),
         at: chrono::DateTime::parse_from_rfc3339(&at)
@@ -541,9 +549,14 @@ mod tests {
             let run = Run::new("persist me");
             run_id = run.id.clone();
             store.create_run(&run).await.unwrap();
-            let e0 =
-                JournalEntry::append(&run.id.0, 0, "run_created", json!({"goal": run.goal}), Hash::genesis())
-                    .unwrap();
+            let e0 = JournalEntry::append(
+                &run.id.0,
+                0,
+                "run_created",
+                json!({"goal": run.goal}),
+                Hash::genesis(),
+            )
+            .unwrap();
             store.append_journal(&e0).await.unwrap();
             let mut run = store.get_run(&run_id).await.unwrap().unwrap();
             run.status = RunStatus::Running;

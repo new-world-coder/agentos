@@ -110,17 +110,35 @@ mod tests {
 
     #[test]
     fn chain_verifies() {
-        let e0 = JournalEntry::append("r1", 0, "run_created", json!({"goal": "x"}), Hash::genesis())
-            .unwrap();
-        let e1 = JournalEntry::append("r1", 1, "effect_proposed", json!({"id": "e1"}), e0.hash.clone())
-            .unwrap();
+        let e0 = JournalEntry::append(
+            "r1",
+            0,
+            "run_created",
+            json!({"goal": "x"}),
+            Hash::genesis(),
+        )
+        .unwrap();
+        let e1 = JournalEntry::append(
+            "r1",
+            1,
+            "effect_proposed",
+            json!({"id": "e1"}),
+            e0.hash.clone(),
+        )
+        .unwrap();
         verify_chain(&[e0, e1]).unwrap();
     }
 
     #[test]
     fn tampered_payload_fails() {
-        let mut e0 = JournalEntry::append("r1", 0, "run_created", json!({"goal": "x"}), Hash::genesis())
-            .unwrap();
+        let mut e0 = JournalEntry::append(
+            "r1",
+            0,
+            "run_created",
+            json!({"goal": "x"}),
+            Hash::genesis(),
+        )
+        .unwrap();
         e0.payload = json!({"goal": "tampered"});
         assert!(e0.verify_hash().is_err());
     }

@@ -81,10 +81,7 @@ impl Store for MemoryStore {
 
     async fn append_journal(&self, entry: &JournalEntry) -> Result<()> {
         let mut g = self.inner.write().await;
-        let chain = g
-            .journal
-            .entry(entry.run_id.clone())
-            .or_default();
+        let chain = g.journal.entry(entry.run_id.clone()).or_default();
         let expected_prev = chain
             .last()
             .map(|e| e.hash.clone())

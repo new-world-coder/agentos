@@ -1,52 +1,108 @@
 # AgentOS
 
-Durable Rust agent runtime with an append-only effect journal, policy-before-effect
-gates, human-in-the-loop approvals, and crash-resume.
+**A durable agent runtime for people who refuse to ship flaky loops.**
 
-**License:** Apache-2.0 · **Status:** Phase 1 (SQLite store + crash-resume)
+AgentOS is an Apache-2.0 **Rust** workspace where every side effect is proposed, policy-checked, optionally human-approved, applied, and recorded on a **hash-chained journal**—so a killed process can **resume** instead of gaslighting you.
 
-## Crates
+[![CI](https://github.com/new-world-coder/agentos/actions/workflows/ci.yml/badge.svg)](https://github.com/new-world-coder/agentos/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Rust](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](rust-toolchain.toml)
+[![Release](https://img.shields.io/github/v/release/new-world-coder/agentos?include_prereleases)](https://github.com/new-world-coder/agentos/releases)
 
-| Crate | Role |
-|-------|------|
-| `agentos-core` | Runs, effects, journal entries, hash chain |
-| `agentos-store` | `Store` trait, in-memory + SQLite backends |
-| `agentos-provider` | Provider trait + mock LLM |
-| `agentos-tools` | Tool registry (`echo`, `add`) |
-| `agentos-policy` | Policy-before-effect engine |
-| `agentos-runtime` | Durable propose → policy → HITL → apply loop |
-| `agentos-api` | Axum HTTP API |
-| `agentos-cli` | CLI (`doctor`, `run`, `resume`, …) |
+> **The oasis idea:** the agent ecosystem is a desert of prompt spaghetti, silent tool calls, and “it worked on my laptop” demos. AgentOS is building an **oasis**—durable execution, auditable journals, and policy that actually runs *before* the effect. Join the movement: [VISION.md](VISION.md) · [good first issues](docs/GOOD_FIRST_ISSUES.md) · [Contributing](CONTRIBUTING.md)
 
-## Quick start
+---
+
+## Why engineers care
+
+| Usual agent loop | AgentOS |
+|------------------|---------|
+| State dies with the process | SQLite-backed runs + crash-resume |
+| “Please don’t do bad things” in the system prompt | **Policy-before-effect** in-process |
+| Mystery side effects | Append-only **effect journal** + SHA-256 chain |
+| HITL as a Slack hack | First-class `awaiting_approval` status |
+| One giant Python file | Clear Rust crates you can embed |
+
+Honest scope: **Phase 0 + Phase 1 are done** (`v0.1.0` / Phase 1 complete). Real model providers, multi-node workers, and a full control plane are **later**—see [LIFECYCLE.md](LIFECYCLE.md). We advertise what we ship.
+
+---
+
+## 60-second start
 
 ```bash
-cargo test --workspace
-cargo clippy --workspace --all-targets -- -D warnings
+git clone https://github.com/new-world-coder/agentos.git
+cd agentos
 cargo run -p agentos-cli -- doctor
 
-# Ephemeral run (in-memory)
-cargo run -p agentos-cli -- run "say hello"
-
-# Durable run (SQLite)
+# Durable run (survives process death)
 cargo run -p agentos-cli -- --db ./agentos.db run "say hello"
 cargo run -p agentos-cli -- --db ./agentos.db resume <run_id>
 
 # HTTP API
 cargo run -p agentos-api -- --db ./agentos.db --bind 127.0.0.1:8080
+curl -s localhost:8080/health
 ```
 
-## Design highlights
+```bash
+cargo test --workspace
+cargo clippy --workspace --all-targets -- -D warnings
+```
 
-- **Effect journal + hash chain** — every lifecycle event is appended and chained with SHA-256.
-- **Policy-before-effect** — tools never run until the policy engine allows (or HITL approves).
-- **HITL** — runs pause at `awaiting_approval` and resume after approve/reject.
-- **Crash-resume** — SQLite persists runs/effects/journal; `resume` verifies the chain and continues.
+---
 
-See [LIFECYCLE.md](LIFECYCLE.md) for phases, [docs/](docs/) for ADRs, and
-[canvases/](canvases/) for the competitive landscape.
+## Architecture (one picture)
 
-## What this is not (yet)
+```mermaid
+flowchart LR
+  Provider -->|ProposedEffect| Policy
+  Policy -->|Allow| Apply
+  Policy -->|Deny| Fail
+  Policy -->|RequireApproval| HITL
+  HITL -->|Approve| Apply
+  Apply --> Journal
+  Journal -->|hash chain| Store[(SQLite / Memory)]
+  Store -->|resume| Runtime
+```
 
-Phases 2–4 are **not** done: no multi-tenant control plane, no real model providers in
-production posture, no distributed workers. See LIFECYCLE.md.
+**Invariant:** no tool runs until policy (or a human) allows it. Every lifecycle event is journaled; resume verifies the chain first.
+
+Deeper dive: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · ADRs in [docs/adr/](docs/adr/)
+
+---
+
+## Workspace
+
+| Crate | Role |
+|-------|------|
+| `agentos-core` | Runs, effects, journal, hash chain |
+| `agentos-store` | `Store` trait · memory + **SQLite** |
+| `agentos-provider` | Provider trait · **mock** LLM |
+| `agentos-tools` | Tool registry (`echo`, `add`, …) |
+| `agentos-policy` | Allow / deny / require-approval |
+| `agentos-runtime` | Propose → policy → HITL → apply |
+| `agentos-api` | Axum HTTP (`/v1/runs`, drive, resume, approve) |
+| `agentos-cli` | `doctor`, `run`, `resume`, `approve`, … |
+
+---
+
+## Contribute — grow the oasis
+
+We want systems engineers, Rustaceans, and agent-infra folks—not drive-by README edits alone.
+
+1. Read [VISION.md](VISION.md) (the movement) and [LIFECYCLE.md](LIFECYCLE.md) (what’s honest).
+2. Pick a [good first issue](docs/GOOD_FIRST_ISSUES.md) or open a discussion issue.
+3. Follow [CONTRIBUTING.md](CONTRIBUTING.md) · [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) · [GOVERNANCE.md](GOVERNANCE.md).
+
+**High-leverage Phase 2 help:** real `Provider` adapters, richer tools + schemas, streaming, stronger policy profiles. See lifecycle Phase 2+.
+
+---
+
+## Repo “About” (GitHub UI)
+
+This token can’t edit GitHub **Description / Topics** from CI. Maintainers: paste from [`.github/repository-meta.md`](.github/repository-meta.md) into **Settings → General → About** (takes ~30 seconds).
+
+---
+
+## License
+
+[Apache-2.0](LICENSE) — use it, embed it, fork it, build on it.

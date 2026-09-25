@@ -59,7 +59,9 @@ application, journal a hash chain, pause for HITL, and expose a mock-backed CLI 
 | Tag | Meaning |
 |-----|---------|
 | `v0.1.0` | Phase 0 complete |
-| `v0.2.0` | Phase 1 complete |
+| `v0.2.0` | Phase 1 complete (+ community presence) |
 | `v0.3.0+` | Later phases |
 
 Phase numbers in docs must stay honest: never claim Phase 2–4 done until exit criteria land.
+
+Release narrative for humans: [docs/RELEASE_NOTES.md](docs/RELEASE_NOTES.md).

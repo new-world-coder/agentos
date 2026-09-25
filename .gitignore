@@ -1,0 +1,9 @@
+/target
+**/*.rs.bk
+.idea/
+.vscode/
+*.db
+*.db-*
+.DS_Store
+agentos.db
+/tmp/

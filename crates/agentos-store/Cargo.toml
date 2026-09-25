@@ -1,0 +1,24 @@
+[package]
+name = "agentos-store"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Durable storage backends for AgentOS (memory + SQLite)"
+authors.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+agentos-core = { workspace = true }
+anyhow = { workspace = true }
+async-trait = { workspace = true }
+chrono = { workspace = true }
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

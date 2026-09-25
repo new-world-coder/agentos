@@ -1,21 +1,26 @@
 # Contributing to AgentOS
 
-Thanks for helping build a durable agent runtime.
+Thanks for helping grow the [oasis](VISION.md)—a durable, auditable agent runtime.
+
+## Before you code
+
+1. Skim [VISION.md](VISION.md) and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+2. Prefer a [good first issue](docs/GOOD_FIRST_ISSUES.md) or file one with the template.
+3. Keep phase claims honest per [LIFECYCLE.md](LIFECYCLE.md).
 
 ## Development
 
 ```bash
 cargo test --workspace
 cargo clippy --workspace --all-targets -- -D warnings
-cargo fmt --all
+cargo fmt --all -- --check
 cargo run -p agentos-cli -- doctor
 ```
 
-Use a SQLite path when testing crash-resume:
+Durable resume smoke:
 
 ```bash
 cargo run -p agentos-cli -- --db /tmp/agentos.db run "goal"
-# kill -9 the process mid-run in real tests, then:
 cargo run -p agentos-cli -- --db /tmp/agentos.db resume <run_id>
 ```
 
@@ -28,12 +33,12 @@ cargo run -p agentos-cli -- --db /tmp/agentos.db resume <run_id>
 
 ## Pull requests
 
-- Keep PRs focused; prefer small crates-scoped changes.
+- Use the PR template; keep changes focused.
 - Include tests for journal, policy, and resume paths you touch.
-- Follow Apache-2.0; do not add incompatible licenses.
-- Link any ADR updates in `docs/adr/`.
+- Apache-2.0 only—no incompatible licenses.
+- Link ADR updates under `docs/adr/`.
 
 ## Code of conduct
 
-Be respectful. No harassment, personal attacks, or gatekeeping. Maintainers may
-moderate discussions and reject contributions that violate these norms.
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Maintainers may moderate and reject
+contributions that violate community standards.

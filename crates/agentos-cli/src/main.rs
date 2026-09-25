@@ -34,13 +34,9 @@ enum Commands {
         drive: bool,
     },
     /// Drive an existing run
-    Drive {
-        run_id: String,
-    },
+    Drive { run_id: String },
     /// Resume a run after crash / restart
-    Resume {
-        run_id: String,
-    },
+    Resume { run_id: String },
     /// Approve or reject a pending effect
     Approve {
         run_id: String,
@@ -51,13 +47,9 @@ enum Commands {
         reason: Option<String>,
     },
     /// Show run status
-    Status {
-        run_id: String,
-    },
+    Status { run_id: String },
     /// Print journal for a run
-    Journal {
-        run_id: String,
-    },
+    Journal { run_id: String },
 }
 
 fn build_runtime(db: Option<PathBuf>) -> anyhow::Result<Runtime> {
@@ -200,7 +192,10 @@ async fn doctor(db: Option<PathBuf>) -> anyhow::Result<()> {
         }
         let journal = rt.store().list_journal(&run.id).await?;
         agentos_core::verify_chain(&journal)?;
-        println!("journal:      ok ({} entries, hash chain valid)", journal.len());
+        println!(
+            "journal:      ok ({} entries, hash chain valid)",
+            journal.len()
+        );
     }
 
     println!("policy:       policy-before-effect enabled");

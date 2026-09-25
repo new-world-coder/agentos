@@ -62,10 +62,7 @@ impl RunStatus {
     }
 
     pub fn is_resumable(self) -> bool {
-        matches!(
-            self,
-            Self::Pending | Self::Running | Self::AwaitingApproval
-        )
+        matches!(self, Self::Pending | Self::Running | Self::AwaitingApproval)
     }
 }
 
@@ -124,7 +121,11 @@ impl Message {
         }
     }
 
-    pub fn tool(tool_call_id: impl Into<String>, name: impl Into<String>, content: impl Into<String>) -> Self {
+    pub fn tool(
+        tool_call_id: impl Into<String>,
+        name: impl Into<String>,
+        content: impl Into<String>,
+    ) -> Self {
         Self {
             role: Role::Tool,
             content: content.into(),

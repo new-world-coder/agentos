@@ -4,7 +4,7 @@ mod routes;
 mod state;
 
 pub use routes::router;
-pub use state::{AppState, build_runtime};
+pub use state::{build_runtime, AppState};
 
 use std::net::SocketAddr;
 use std::path::PathBuf;

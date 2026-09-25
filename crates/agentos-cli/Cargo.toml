@@ -1,0 +1,27 @@
+[package]
+name = "agentos-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Command-line interface for AgentOS"
+authors.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "agentos"
+path = "src/main.rs"
+
+[dependencies]
+agentos-core = { workspace = true }
+agentos-policy = { workspace = true }
+agentos-provider = { workspace = true }
+agentos-runtime = { workspace = true }
+agentos-store = { workspace = true }
+agentos-tools = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }

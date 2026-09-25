@@ -1,4 +1,4 @@
-# Vision — the AgentOS oasis
+# Vision — Oasis
 
 ## The desert
 
@@ -13,7 +13,7 @@ That works for demos. It fails for products that must be **resumable**, **review
 
 ## The oasis
 
-AgentOS is a bet that agent infrastructure should look more like **durable execution** and less like improv theatre:
+Oasis is a bet that agent infrastructure should look more like **durable execution** and less like improv theatre:
 
 1. **Effects are first-class** — proposed, decided, applied, recorded.
 2. **Policy runs before the effect** — deny / allow / human approval in-process.
@@ -42,4 +42,4 @@ If that resonates, you belong here. Start at [docs/GOOD_FIRST_ISSUES.md](docs/GO
 
 ## North star
 
-An engineer can kill `-9` an AgentOS process mid-tool-loop, restart, **verify the journal**, resume, and show a reviewer *exactly* what was proposed, allowed, and applied.
+An engineer can kill `-9` an Oasis process mid-tool-loop, restart, **verify the journal**, resume, and show a reviewer *exactly* what was proposed, allowed, and applied.

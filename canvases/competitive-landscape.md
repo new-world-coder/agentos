@@ -1,4 +1,4 @@
-# Competitive canvas — AgentOS
+# Competitive canvas — Oasis
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐

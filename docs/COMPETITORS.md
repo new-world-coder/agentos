@@ -1,9 +1,9 @@
 # Competitors & landscape
 
-AgentOS positions itself as a **durable, policy-gated agent runtime** with an
+Oasis positions itself as a **durable, policy-gated agent runtime** with an
 append-only effect journal—not a chat UI or a prompt framework.
 
-| Project | Focus | Contrast with AgentOS |
+| Project | Focus | Contrast with Oasis |
 |---------|-------|------------------------|
 | LangGraph / LangChain | Graph orchestration in Python | Rich ecosystem; less emphasis on hash-chained effect journals in Rust |
 | AutoGen / Semantic Kernel | Multi-agent conversation patterns | Strong DX; durability often delegated to app layer |

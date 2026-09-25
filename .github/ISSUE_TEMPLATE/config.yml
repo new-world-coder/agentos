@@ -1,11 +1,11 @@
 blank_issues_enabled: true
 contact_links:
   - name: Vision & oasis movement
-    url: https://github.com/new-world-coder/agentos/blob/main/VISION.md
-    about: Why AgentOS exists and how we grow as a community
+    url: https://github.com/new-world-coder/oasis/blob/main/VISION.md
+    about: Why Oasis exists and how we grow as a community
   - name: Good first issues guide
-    url: https://github.com/new-world-coder/agentos/blob/main/docs/GOOD_FIRST_ISSUES.md
+    url: https://github.com/new-world-coder/oasis/blob/main/docs/GOOD_FIRST_ISSUES.md
     about: Starter tasks before you open a large PR
   - name: Lifecycle (honest phases)
-    url: https://github.com/new-world-coder/agentos/blob/main/LIFECYCLE.md
+    url: https://github.com/new-world-coder/oasis/blob/main/LIFECYCLE.md
     about: What is done vs not claimed yet

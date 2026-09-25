@@ -1,6 +1,6 @@
 # Governance
 
-AgentOS is an Apache-2.0 project aimed at a durable, auditable agent runtime.
+Oasis is an Apache-2.0 project aimed at a durable, auditable agent runtime.
 
 ## Roles
 

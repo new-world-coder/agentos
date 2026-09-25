@@ -1,4 +1,4 @@
-# Contributing to AgentOS
+# Contributing to Oasis
 
 Thanks for helping grow the [oasis](VISION.md)—a durable, auditable agent runtime.
 
@@ -14,14 +14,14 @@ Thanks for helping grow the [oasis](VISION.md)—a durable, auditable agent runt
 cargo test --workspace
 cargo clippy --workspace --all-targets -- -D warnings
 cargo fmt --all -- --check
-cargo run -p agentos-cli -- doctor
+cargo run -p oasis-cli -- doctor
 ```
 
 Durable resume smoke:
 
 ```bash
-cargo run -p agentos-cli -- --db /tmp/agentos.db run "goal"
-cargo run -p agentos-cli -- --db /tmp/agentos.db resume <run_id>
+cargo run -p oasis-cli -- --db /tmp/oasis.db run "goal"
+cargo run -p oasis-cli -- --db /tmp/oasis.db resume <run_id>
 ```
 
 ## Principles

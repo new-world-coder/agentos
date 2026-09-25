@@ -1,26 +1,38 @@
-# Repository About metadata
+# Repository About + rename checklist
 
-GitHub Apps used by cloud agents often **cannot** PATCH description/topics (403).
-A maintainer should copy this into the GitHub UI once.
+GitHub Apps used by cloud agents often **cannot** rename the repository or PATCH
+description/topics (403). A maintainer should apply these in the GitHub UI once.
 
-## Settings → General → About
+## 1) Rename the GitHub repository
+
+**Settings → General → Repository name**
+
+```text
+agentos  →  oasis
+```
+
+Until that lands, clone URLs still work as `new-world-coder/agentos` (GitHub redirects
+after rename). Docs/badges already point at `new-world-coder/oasis`.
+
+## 2) About
 
 **Description** (short):
 
 ```text
-Durable Rust agent runtime: hash-chained effect journal, policy-before-effect, HITL, crash-resume. Apache-2.0 oasis for auditable agents.
+Oasis — durable Rust agent runtime: hash-chained effect journal, policy-before-effect, HITL, crash-resume.
 ```
 
 **Website** (optional):
 
 ```text
-https://github.com/new-world-coder/agentos
+https://github.com/new-world-coder/oasis
 ```
 
 **Topics** (add as tags):
 
 ```text
 rust
+oasis
 agents
 ai-agents
 llm
@@ -35,9 +47,7 @@ apache-2
 open-source
 ```
 
-Check: ☑ Issues · ☑ Preserve this repository | Discussions (optional, recommended later)
+## 3) Releases
 
-## Releases
-
-Tags `v0.1.0` (Phase 0) and `v0.2.0` (Phase 1) should appear under **Releases**.
-If a tag exists without a Release, click **Draft a release** → choose the tag → publish using notes in `docs/RELEASE_NOTES.md`.
+Tags `v0.1.0` / `v0.2.0` remain valid history (AgentOS era). This rename ships as
+part of the next docs/release notes entry (`docs/RELEASE_NOTES.md`).

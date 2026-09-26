@@ -3,6 +3,9 @@ contact_links:
   - name: Vision & oasis movement
     url: https://github.com/new-world-coder/oasis/blob/main/VISION.md
     about: Why Oasis exists and how we grow as a community
+  - name: Crash-before-persist (ADR 0005)
+    url: https://github.com/new-world-coder/oasis/blob/main/docs/adr/0005-crash-before-persist.md
+    about: Core design discussion — external success, local crash, idempotency
   - name: Good first issues guide
     url: https://github.com/new-world-coder/oasis/blob/main/docs/GOOD_FIRST_ISSUES.md
     about: Starter tasks before you open a large PR

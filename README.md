@@ -66,7 +66,7 @@ flowchart LR
 
 **Invariant:** no tool runs until policy (or a human) allows it. Every lifecycle event is journaled; resume verifies the chain first.
 
-Deeper dive: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · ADRs in [docs/adr/](docs/adr/)
+Deeper dive: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · ADRs in [docs/adr/](docs/adr/) · core durability discussion: [ADR 0005 — crash before persist](docs/adr/0005-crash-before-persist.md)
 
 ---
 

@@ -40,6 +40,7 @@ application, journal a hash chain, pause for HITL, and expose a mock-backed CLI 
 - Streaming tokens
 - Sandboxed shell / filesystem tools with stronger policy profiles
 - Structured tool schemas (JSON Schema)
+- **Design gate:** [ADR 0005](docs/adr/0005-crash-before-persist.md) — mutating tools must not ship silent at-least-once without an idempotency / uncertainty story
 
 ## Phase 3 — Control plane (not started)
 

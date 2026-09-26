@@ -1,5 +1,5 @@
-use oasis_core::{Effect, JournalEntry, Result, Run, RunId};
 use async_trait::async_trait;
+use oasis_core::{Effect, JournalEntry, Result, Run, RunId};
 
 /// Durable store for runs, effects, and the effect journal.
 #[async_trait]

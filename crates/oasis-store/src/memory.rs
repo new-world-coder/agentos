@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 use std::sync::Arc;
 
-use oasis_core::{Effect, Hash, JournalEntry, Result, Run, RunId};
 use async_trait::async_trait;
+use oasis_core::{Effect, Hash, JournalEntry, Result, Run, RunId};
 use tokio::sync::RwLock;
 
 use crate::traits::Store;

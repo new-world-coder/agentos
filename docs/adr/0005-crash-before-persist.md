@@ -2,7 +2,8 @@
 
 ## Status
 
-**Proposed** — core design discussion (not implemented).  
+**Proposed** — core design discussion (not implemented).
+Tracking issue: https://github.com/new-world-coder/oasis/issues/7  
 Target phases: **2+** (real tools / providers). Phase 0–1 only claim journaled *local* progress.
 
 ## One-line problem

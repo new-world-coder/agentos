@@ -1,6 +1,8 @@
 # Design discussion: crash after external success
 
 > Canonical decision record: **[ADR 0005](../adr/0005-crash-before-persist.md)** (Proposed).
+>
+> **Pick-up issue for contributors:** https://github.com/new-world-coder/oasis/issues/7
 
 This page is the short, shareable framing for contributors and reviewers.
 

@@ -2,7 +2,10 @@
 
 > Canonical decision record: **[ADR 0005](../adr/0005-crash-before-persist.md)** (Proposed).
 >
-> **Pick-up issue for contributors:** https://github.com/new-world-coder/oasis/issues/7
+> **Tracking issue:** https://github.com/new-world-coder/oasis/issues/7
+>
+> **Labeling:** **Not** a `good first issue`. Prefer `enhancement` + `help wanted` + `documentation`.
+> This is an advanced durable-execution track (checkpoint / idempotency / uncertain resume).
 
 This page is the short, shareable framing for contributors and reviewers.
 

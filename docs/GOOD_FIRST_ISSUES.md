@@ -15,7 +15,7 @@ Welcome. These are sized for a first PR while teaching the real invariants.
 1. **API curl cookbook** — document create → drive → journal → approve with example JSON.
 2. **Architecture SVG** — export the mermaid diagram to a checked-in figure for GitHub mobile.
 3. **Windows / macOS doctor notes** — if anything breaks outside Linux CI.
-4. **ADR 0005 discussion** — comment / issue on open questions in [crash-before-persist](../adr/0005-crash-before-persist.md) (idempotency keys, inquire, fsync).
+4. **ADR 0005 discussion** — comment on [#7](https://github.com/new-world-coder/oasis/issues/7) / open questions in [crash-before-persist](../adr/0005-crash-before-persist.md). **Note:** #7 itself is **not** a good first issue (advanced durability); discussion-only comments are still welcome.
 
 ### Runtime & store
 

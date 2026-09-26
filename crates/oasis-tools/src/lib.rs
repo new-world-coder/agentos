@@ -3,8 +3,8 @@
 use std::collections::HashMap;
 use std::sync::Arc;
 
-use oasis_core::{CoreError, Result};
 use async_trait::async_trait;
+use oasis_core::{CoreError, Result};
 use serde_json::Value;
 
 /// A callable tool the runtime can invoke after policy approval.

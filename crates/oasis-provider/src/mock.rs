@@ -1,8 +1,8 @@
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
 
-use oasis_core::{ProposedEffect, Result};
 use async_trait::async_trait;
+use oasis_core::{ProposedEffect, Result};
 use tokio::sync::Mutex;
 
 use crate::traits::{Provider, ProviderRequest, ProviderResponse};

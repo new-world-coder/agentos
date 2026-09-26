@@ -1,14 +1,14 @@
 use std::path::PathBuf;
 use std::sync::Arc;
 
+use anyhow::Context;
+use clap::{Parser, Subcommand};
 use oasis_core::RunId;
 use oasis_policy::PolicyEngine;
 use oasis_provider::MockProvider;
 use oasis_runtime::{ApprovalDecision, Runtime, RuntimeConfig, StepOutcome};
 use oasis_store::{MemoryStore, SqliteStore, Store};
 use oasis_tools::ToolRegistry;
-use anyhow::Context;
-use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
 #[command(name = "oasis", about = "Oasis durable agent runtime CLI", version)]
@@ -86,8 +86,7 @@ fn print_outcome(outcome: &StepOutcome) {
 async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt()
         .with_env_filter(
-            tracing_subscriber::EnvFilter::from_default_env()
-                .add_directive("oasis=info".parse()?),
+            tracing_subscriber::EnvFilter::from_default_env().add_directive("oasis=info".parse()?),
         )
         .init();
 

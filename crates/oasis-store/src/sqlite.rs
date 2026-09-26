@@ -1,10 +1,10 @@
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
+use async_trait::async_trait;
 use oasis_core::{
     CoreError, Effect, EffectKind, EffectStatus, Hash, JournalEntry, Result, Run, RunId, RunStatus,
 };
-use async_trait::async_trait;
 use rusqlite::{params, Connection};
 
 use crate::traits::Store;

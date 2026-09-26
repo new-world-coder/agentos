@@ -1,10 +1,10 @@
-use oasis_core::{Run, RunId};
-use oasis_runtime::{ApprovalDecision, StepOutcome};
 use axum::extract::{Path, State};
 use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
 use axum::routing::{get, post};
 use axum::{Json, Router};
+use oasis_core::{Run, RunId};
+use oasis_runtime::{ApprovalDecision, StepOutcome};
 use serde::{Deserialize, Serialize};
 use tower_http::cors::CorsLayer;
 use tower_http::trace::TraceLayer;
@@ -203,8 +203,9 @@ impl ApiError {
 impl From<oasis_core::CoreError> for ApiError {
     fn from(value: oasis_core::CoreError) -> Self {
         let status = match &value {
-            oasis_core::CoreError::RunNotFound(_)
-            | oasis_core::CoreError::EffectNotFound(_) => StatusCode::NOT_FOUND,
+            oasis_core::CoreError::RunNotFound(_) | oasis_core::CoreError::EffectNotFound(_) => {
+                StatusCode::NOT_FOUND
+            }
             oasis_core::CoreError::PolicyDenied(_) => StatusCode::FORBIDDEN,
             oasis_core::CoreError::AwaitingApproval(_) => StatusCode::CONFLICT,
             _ => StatusCode::BAD_REQUEST,

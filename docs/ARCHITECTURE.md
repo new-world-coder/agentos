@@ -26,10 +26,20 @@ sequenceDiagram
     R->>S: status awaiting_approval
     U->>R: approve / reject
   else Allow
+    R->>S: journal effect_executing (proposed Phase 2+)
     R->>T: invoke (if tool)
+    Note over R,S: Crash here = external OK, local unknown
     R->>S: journal effect_applied + update tip_hash
   end
 ```
+
+## The hard durability gap
+
+Phase 0–1 journal what Oasis *believes*. They do **not** yet close the window where an
+external tool succeeds and the process dies before `effect_applied` is persisted.
+That problem—checkpointing, idempotency keys, inquire/compensate, uncertain state—is
+captured as **[ADR 0005](adr/0005-crash-before-persist.md)** (Proposed) and the short
+write-up [design/crash-before-persist.md](design/crash-before-persist.md).
 
 ## Hash chain
 
@@ -55,3 +65,4 @@ require changing policy or providers.
 - [0002 Effect journal](adr/0002-effect-journal.md)
 - [0003 Policy before effect](adr/0003-policy-before-effect.md)
 - [0004 SQLite store](adr/0004-sqlite-store.md)
+- [0005 External success / crash before persist](adr/0005-crash-before-persist.md) (Proposed)

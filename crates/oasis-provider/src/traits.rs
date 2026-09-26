@@ -1,5 +1,5 @@
-use oasis_core::{Message, ProposedEffect, Result};
 use async_trait::async_trait;
+use oasis_core::{Message, ProposedEffect, Result};
 
 /// Request sent to a language-model provider.
 #[derive(Debug, Clone)]
